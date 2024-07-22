@@ -1,0 +1,108 @@
+{
+	"layer": "top", 
+	"position": "top",
+	"height": 30,
+	"spacing": 4,
+	// Order of Modules
+	"modules-left": [
+		"cpu",
+		"memory",
+		"tray",
+		"custom/media"
+	],
+	"modules-center": [
+		"hyprland/workspaces"
+	],
+	"modules-right": [
+    "backlight",
+		"pulseaudio",
+		"network",
+		"battery",
+		"clock"
+	],
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+			"default": "",
+			"1": "",
+			"2": "",
+			"3": "",
+			"4": "",
+			"5": "",
+			"6": "6"
+		}
+	},
+	"tray": {
+		"icon-size": 13,
+		"spacing": 10
+	},
+	"cpu": {
+		"interval": 30,
+		"format": "{}% ",
+		"max-length": 30
+	},
+	"memory": {
+		"interval": 30,
+		"format": "{used:0.1f}G/{total:0.1f}G "
+	},
+	"custom/media": {
+    		"format": "{icon} {}",
+		"escape": true,
+		"return-type": "json",
+		"max-length": 40,
+    		"on-click": "playerctl play-pause",
+    		"on-click-right": "playerctl stop",
+    		"smooth-scrolling-threshold": 10, // This value was tested using a trackpad, it should be lowered if using a mouse.
+    		"on-scroll-up": "playerctl next",
+    		"on-scroll-down": "playerctl previous",
+		"exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+	},
+	"battery": {
+		"states": {
+        		"warning": 30,
+        		"critical": 15
+    		},
+    		"format": "{capacity}% {icon}",
+		"format-plugged": "",
+		"format-icons": ["", "", "", "", ""],
+		"max-length": 25
+	},
+	"clock": {
+        "timezone": "Australia/Melbourne",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d/%m/%Y}",
+        "format": " {:%H:%M}"
+	},
+	"network": {
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ipaddr}/{cidr} 󰊗",
+		"format-disconnected": ":(",
+    "on-click": "rofi-wifi-menu"
+	},
+	"pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        	},
+        "on-click": "pavucontrol"
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon}",
+    "format-icons": ["", ""]
+  }
+
+}
